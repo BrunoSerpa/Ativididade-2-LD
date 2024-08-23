@@ -1,29 +1,33 @@
-import { Props, PropsTitle } from "../../types";
+import styled from "styled-components";
+import { PropsPage } from "../../types";
 import Carregando from "../Carregando";
 import Direita from "../Direita";
 import Esquerda from "../Esquerda";
 
-interface PrincipalProps {
-    dados: Props;
-    titulo: PropsTitle;
-}
-
-export default function Principal(principal: PrincipalProps) {
-    return principal.dados.dataApuracao ? (
-        <div>
+export default function Principal(principal: PropsPage) {
+    return principal.loteria.dataApuracao ? (
+        <WrapperPrincipal>
             <Esquerda
                 titulo={principal.titulo}
-                dataProximoConcurso={principal.dados.dataProximoConcurso}
-                valorEstimadoProximoConcurso={principal.dados.valorEstimadoProximoConcurso}
+                dataProximoConcurso={principal.loteria.dataProximoConcurso}
+                valorEstimadoProximoConcurso={principal.loteria.valorEstimadoProximoConcurso}
             />
             <Direita
-                dataPorExtenso={principal.dados.dataPorExtenso}
-                dezenas={principal.dados.dezenas}
-                numeroDoConcurso={principal.dados.numeroDoConcurso}
-                quantidadeGanhadores={principal.dados.quantidadeGanhadores}
+                dataPorExtenso={principal.loteria.dataPorExtenso}
+                dezenas={principal.loteria.dezenas}
+                numeroDoConcurso={principal.loteria.numeroDoConcurso}
+                quantidadeGanhadores={principal.loteria.quantidadeGanhadores}
             />
-        </div>
+        </WrapperPrincipal>
     ) : (
         <Carregando />
-    )
-}
+    );
+};
+
+
+const WrapperPrincipal = styled.div`
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+`;
