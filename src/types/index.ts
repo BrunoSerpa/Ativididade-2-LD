@@ -17,4 +17,13 @@ export interface Props {
     tipoJogo: string;
     valorEstimadoProximoConcurso: number;
     valorPremio: number;
-  }
+};
+
+export interface ThemeProps {
+    acumulou: string;
+    data: string;
+    estimativa: string;
+    loteria: string;
+    bola: string;
+    bolafonte: string;
+};
