@@ -1,24 +1,54 @@
 import styled from "styled-components";
+import { ThemeProps } from "../../types";
+import { useLoteria, useTema } from "../../hooks";
 
 interface Props {
+    theme: ThemeProps;
     dataProximoConcurso: string;
     valorEstimadoProximoConcurso: number;
 };
 
-export default function Estimativa({ dataProximoConcurso, valorEstimadoProximoConcurso }: Props) {
+function Estimativa(props: Props) {
     return (
         <WrapperAcumulou>
-            <WrapperTexto>
+            <WrapperTexto theme={props.theme}>
                 Estimativa de prêmio do próximo concurso.
-                Sorteio em {dataProximoConcurso}:
+                Sorteio em {props.dataProximoConcurso}:
             </WrapperTexto>
-            <WrapperValor>
-                {valorEstimadoProximoConcurso.toLocaleString("pt-Br", {
+            <WrapperValor theme={props.theme}>
+                {props.valorEstimadoProximoConcurso.toLocaleString("pt-Br", {
                     style: "currency",
                     currency: "BRL"
                 })}
             </WrapperValor>
         </WrapperAcumulou>
+    );
+};
+
+export function EstimativaMegasena() {
+    const { megasena } = useLoteria();
+    const { themeMegasena } = useTema();
+
+    return (
+        <Estimativa dataProximoConcurso={megasena.dataProximoConcurso} valorEstimadoProximoConcurso={megasena.valorEstimadoProximoConcurso} theme={themeMegasena} />
+    );
+};
+
+export function EstimativaQuina() {
+    const { quina } = useLoteria();
+    const { themeQuina } = useTema();
+
+    return (
+        <Estimativa dataProximoConcurso={quina.dataProximoConcurso} valorEstimadoProximoConcurso={quina.valorEstimadoProximoConcurso} theme={themeQuina} />
+    );
+};
+
+export function EstimativaTimemania() {
+    const { timemania } = useLoteria();
+    const { themeTimemania } = useTema();
+
+    return (
+        <Estimativa dataProximoConcurso={timemania.dataProximoConcurso} valorEstimadoProximoConcurso={timemania.valorEstimadoProximoConcurso} theme={themeTimemania} />
     );
 };
 
@@ -30,12 +60,12 @@ const WrapperAcumulou = styled.div`
 
 const WrapperTexto = styled.div`
     font-size: 15px;
-    /* color: {data}; */
+    color: ${(props) => props.theme.data};
 `;
 
 const WrapperValor = styled.div`
     font-size: 20px;
     margin-top: 15px;
     font-weight: bold;
-    /* color: {estimativa}; */
+    color: ${(props) => props.theme.estimativa};
 `;

@@ -1,29 +1,44 @@
-import styled from "styled-components";
-import { PropsPage } from "../../types";
 import Carregando from "../Carregando";
-import Direita from "../Direita";
-import Esquerda from "../Esquerda";
+import { EsquerdaMegasena, EsquerdaQuina, EsquerdaTimemania } from "../Esquerda";
+import { DireitaMegasena, DireitaQuina, DireitaTimemania } from "../Direita";
+import { useLoteria } from "../../hooks";
+import styled from "styled-components";
 
-export default function Principal(principal: PropsPage) {
-    return principal.loteria.dataApuracao ? (
-        <WrapperPrincipal>
-            <Esquerda
-                titulo={principal.titulo}
-                dataProximoConcurso={principal.loteria.dataProximoConcurso}
-                valorEstimadoProximoConcurso={principal.loteria.valorEstimadoProximoConcurso}
-            />
-            <Direita
-                dataPorExtenso={principal.loteria.dataPorExtenso}
-                dezenas={principal.loteria.dezenas}
-                numeroDoConcurso={principal.loteria.numeroDoConcurso}
-                quantidadeGanhadores={principal.loteria.quantidadeGanhadores}
-            />
-        </WrapperPrincipal>
+export function Megasena() {
+    const { megasena } = useLoteria();
+    return megasena.dataApuracao ? (
+            <WrapperPrincipal>
+                <EsquerdaMegasena />
+                <DireitaMegasena />
+            </WrapperPrincipal>
     ) : (
         <Carregando />
     );
 };
 
+export function Quina() {
+    const { quina } = useLoteria();
+    return quina.dataApuracao ? (
+            <WrapperPrincipal>
+                <EsquerdaQuina />
+                <DireitaQuina />
+            </WrapperPrincipal>
+    ) : (
+        <Carregando />
+    );
+};
+
+export function Timemania() {
+    const { timemania } = useLoteria();
+    return timemania.dataApuracao ? (
+            <WrapperPrincipal>
+                <EsquerdaTimemania />
+                <DireitaTimemania />
+            </WrapperPrincipal>
+    ) : (
+        <Carregando />
+    );
+};
 
 const WrapperPrincipal = styled.div`
     border-bottom: 1px solid #ddd;

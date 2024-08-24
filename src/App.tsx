@@ -1,16 +1,16 @@
 import { ThemeProvider } from 'styled-components';
 import { Provider } from './contexts/Contexto';
 import Principal from './pages/Principal';
-import { mega } from './styles/theme';
+import useTema from './hooks/useTema';
 
 function App() {
-  const theme = mega
+  const {themeMegasena} = useTema();
   return (
-    <ThemeProvider theme={theme}>
-      <Provider>
-        <Principal />
-      </Provider>
-    </ThemeProvider>
+      <ThemeProvider theme={themeMegasena}>
+        <Provider>
+          <Principal />
+        </Provider>
+      </ThemeProvider>
   );
 }
 

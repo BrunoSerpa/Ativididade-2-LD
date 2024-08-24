@@ -28,8 +28,8 @@ const getLinkColor = (href: string) => {
         case '/timemania':
             return '#00ff48';
         case '/megasena':
-            return '#260085';
-        default:
             return '#209869';
+        default:
+            return '#260085';
     };
 };

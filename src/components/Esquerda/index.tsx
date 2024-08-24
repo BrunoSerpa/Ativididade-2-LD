@@ -1,23 +1,34 @@
 import styled from "styled-components";
-import { PropsTitle } from "../../types";
-import Estimativa from "../Estimativa";
-import NomeLoteria from "../NomeLoteria";
+import { NomeLoteriaMegasena, NomeLoteriaQuina, NomeLoteriaTimemania } from "../NomeLoteria";
+import { EstimativaMegasena, EstimativaQuina, EstimativaTimemania } from "../Estimativa";
 
-interface Props {
-    titulo: PropsTitle;
-    dataProximoConcurso: string;
-    valorEstimadoProximoConcurso: number;
-};
-
-export default function Esquerda({ titulo, dataProximoConcurso, valorEstimadoProximoConcurso }: Props) {
+export function EsquerdaMegasena() {
     return (
         <WrapperEsquerda>
-            <NomeLoteria trevo={titulo.trevo} nomeLoteria={titulo.nome} />
-            <Estimativa dataProximoConcurso={dataProximoConcurso} valorEstimadoProximoConcurso={valorEstimadoProximoConcurso} />
+            <NomeLoteriaMegasena />
+            <EstimativaMegasena />
         </WrapperEsquerda>
     );
 };
 
-const WrapperEsquerda = styled.div `
+export function EsquerdaQuina() {
+    return (
+        <WrapperEsquerda>
+            <NomeLoteriaQuina />
+            <EstimativaQuina />
+        </WrapperEsquerda>
+    );
+};
+
+export function EsquerdaTimemania() {
+    return (
+        <WrapperEsquerda>
+            <NomeLoteriaTimemania />
+            <EstimativaTimemania />
+        </WrapperEsquerda>
+    );
+};
+
+const WrapperEsquerda = styled.div`
     flex: 1;
 `;

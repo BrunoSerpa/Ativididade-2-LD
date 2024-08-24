@@ -1,21 +1,34 @@
 import styled from "styled-components";
-import Acumulou from "../Acumulou";
-import Data from "../Data";
-import Resultado from "../Resultado";
+import { ResultadoMegasena, ResultadoQuina, ResultadoTimemania } from "../Resultado";
+import { AcumulouMegasena, AcumulouQuina, AcumulouTimemania } from "../Acumulou";
+import { DataMegasena, DataQuina, DataTimemania } from "../Data";
 
-interface Props {
-    quantidadeGanhadores: number;
-    dezenas: string[];
-    numeroDoConcurso: number;
-    dataPorExtenso: string;
-};
-
-export default function Direita({ dezenas, quantidadeGanhadores, dataPorExtenso, numeroDoConcurso }: Props) {
+export function DireitaMegasena() {
     return (
         <WrapperDireita>
-            <Resultado dezenas={dezenas} />
-            <Acumulou quantidadeGanhadores={quantidadeGanhadores} />
-            <Data dataPorExtenso={dataPorExtenso} numeroDoConcurso={numeroDoConcurso} />
+            <ResultadoMegasena />
+            <AcumulouMegasena />
+            <DataMegasena />
+        </WrapperDireita>
+    );
+};
+
+export function DireitaQuina() {
+    return (
+        <WrapperDireita>
+            <ResultadoQuina />
+            <AcumulouQuina />
+            <DataQuina />
+        </WrapperDireita>
+    );
+};
+
+export function DireitaTimemania() {
+    return (
+        <WrapperDireita>
+            <ResultadoTimemania />
+            <AcumulouTimemania />
+            <DataTimemania />
         </WrapperDireita>
     );
 };
